@@ -1,6 +1,6 @@
 #include <servo.h>
 //IR sensor
-int IRL = 1;usdflassdjf
+int IRL = 1;
 int IRL = 2;
 int IRL = 3;
 //Ultrasonic sensor
