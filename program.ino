@@ -16,34 +16,44 @@ int motorr2 = 11;
 //Servo Motors
 
 //Real Time Clock
+
 //
-void setup() {
-  // put your setup code here, to run once:
-
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-
-}
-void linefollower()
+void setup() 
 {
   
 }
 
-//line follower
-//object detection
-void RFID()
+void loop() 
+{
+  
+}
+void linefollower() //line follower
+{
+  
+}
+void RFID() //Patent Identification
 {
 
 }
-
-void Ultrasonic()
+void Ultrasonic() //object detection
 {
+  
 }
-
-void medicines()
+void medicines() //Despensing system
 {
+  
+}
+void irsensor() //despensing gate way
+{
+  
+}
+void time()
+{
+  
+}
+void Soundsystem()
+{
+  
 }
 
 }
