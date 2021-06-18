@@ -16,44 +16,34 @@ int motorr2 = 11;
 //Servo Motors
 
 //Real Time Clock
-
 //
-void setup() 
-{
-  
-}
-
-void loop() 
-{
-  
-}
-void linefollower() //line follower
-{
-  
-}
-void RFID() //Patent Identification
-{
+void setup() {
+  // put your setup code here, to run once:
 
 }
-void Ultrasonic() //object detection
-{
-  
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
 }
-void medicines() //Despensing system
+void linefollower()
 {
   
+} 
+BHUVAN IS FRAKING OUT
+//line follower
+//object detection
+void RFID()
+{
+
 }
-void irsensor() //despensing gate way
+
+void Ultrasonic()
 {
-  
 }
-void time()
+
+void medicines()
 {
-  
-}
-void Soundsystem()
-{
-  
 }
 
 }
