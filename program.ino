@@ -40,7 +40,26 @@ void Ultrasonic() //object detection
   
 }
 void medicines() //Despensing system
+{#include<Servo.h>
+Servo motor;
+int p=9;        //digital pin connected
+void setup(){
+motor.attach(9);
+motor.write(180);
+}
+void loop(){
+for(p=0;p<180;p++)
 {
+motor.write(p);
+delay(10);
+}
+for(p=180;p>=1;p--)
+{
+motor.write(p);
+delay(10);
+}
+}
+
   
 }
 void irsensor() //despensing gate way
