@@ -1,14 +1,15 @@
 #include <servo.h>
-#include<Wire.h>
-#include<Time.h>
-#include<DS1307RTC.h>
+#include <Wire.h>
+#include <Time.h>
+#include <DS1307RTC.h>
 #include <SPI.h>
 #include <MFRC522.h>
 
 //IR sensor
 //int IRL = A0;
 //int IRL = A1;
-int IRL = 3;
+int IRH = 2;
+int IRO = 3;
 
 //Ultrasonic sensor
 #define eco1 4;
@@ -64,7 +65,7 @@ void setup()
   Serial.println();
   
   //IR Sensor
-
+  pinMode (IRH, INPUT); // sensor pin INPUT
   
   //Ultrasonic Sensor
   pinMode(trig1, OUTPUT); 
@@ -78,7 +79,7 @@ void setup()
   //Servo Motors
   
   //Stepper Motor
-  
+   
   //Buzzer
   digitalWrite(buz, OUTPUT);
   
@@ -182,18 +183,18 @@ void loop()
   //Show UID on serial monitor
   Serial.print("UID tag :");
   String content= "";
-  byte letter;                                                          //??
+  byte letter;         //??
   for (byte i = 0; i < mfrc522.uid.size; i++) 
   {
      Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
      Serial.print(mfrc522.uid.uidByte[i], HEX);
      content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
-     content.concat(String(mfrc522.uid.uidByte[i], HEX));                             //doubt
+     content.concat(String(mfrc522.uid.uidByte[i], HEX));      //doubt
   }
   Serial.println();
   Serial.print("Message : ");
   content.toUpperCase();
-  if (content.substring(1) == "BD 31 15 2B")                        //change here the UID of the card that you want to give access to
+  if (content.substring(1) == "BD 31 15 2B")  //change here the UID of the card that you want to give access to
   {
     Serial.println("Authorized access");
     Serial.println();
@@ -207,71 +208,51 @@ void loop()
 } 
 
 }
-void Ultrasonic() //object detection
-{
-  long duration; 
-  int distance; 
-  digitalWrite(trig1, LOW);
-  digitalWrite(trig2, LOW);
-  delay(2000);
-  digitalWrite(trig1, HIGH);
-  
-  delay(10000);
-  digitalWrite(trig1, LOW);
-  digitalWrite(trig2, LOW);
-  duration = pulseIn(eco1, HIGH);
-  
-  distance = duration * 0.034 / 2; 
-
-  Serial.print("Distance: ");
-  Serial.print(distance);  
-  Serial.println(" cm");        //will it come in next line
-}
 
 void medicines() //Despensing system
 {
   Servo motor;
-int p=9;        //digital pin connected
-void setup(){
-motor.attach(9);
-motor.write(180);
-}
-void loop(){
-for(p=0;p<180;p++)
-{
-motor.write(p);
-delay(10);
-}
-for(p=180;p>=1;p--)
-{
-motor.write(p);
-delay(10);
-}
+  int p=9;        //digital pin connected
+  void setup()
+  {
+    motor.attach(9);
+    motor.write(180);
+  }
+  void loop(){
+    for(p=0;p<180;p++)
+    {
+      motor.write(p);
+      delay(10);
+    }
+    for(p=180;p>=1;p--)
+    {
+      motor.write(p);
+      delay(10);
+    }
 }
 
   
 }
 void irsensor() //despensing gate way
 {
+  int statusSensor = digitalRead (IRSensor);
   
+  if (statusSensor == 1)
+    digitalWrite(LED, LOW); // LED LOW
+  }
+  else
+  {
+    digitalWrite(LED, HIGH); // LED High
+  }
 }
 void time()
 {
-void setup(){
-
-}
-void loop(){
-void time()
-}
-void time() {
-int time; 
-tmElements_t tm;
-time=RTC.read(tm);
-returntime;
+  int time; 
+  tmElements_t tm;
+  time = RTC.read(tm);
+  return time;
 }
 
-  
-}
 void buzzReady()
 {
   digitalWrite(buz, HIGH);
