@@ -154,7 +154,24 @@ void irsensor() //despensing gate way
   
 }
 void time()
-{
+{#include<Wire.h>
+#include<Time.h>
+#include<DS1307RTC.h>
+void setup(){
+Serial.begin(9600);
+while(!serial);
+delay(200);
+}
+void loop(){
+void time()
+}
+void time() {
+int time; 
+tmElements_t tm;
+time=RTC.read(tm);
+returntime;
+}
+
   
 }
 void Soundsystem()
