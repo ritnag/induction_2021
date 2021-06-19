@@ -12,7 +12,7 @@ int IRL = 3;
 int motorl1 = 8;
 int motorl2 = 9;
 int motorr1 = 10;
-int motorr2 = 11;ahdbcj
+int motorr2 = 11;
 //Servo Motors
 
 //Real Time Clock
@@ -89,6 +89,8 @@ void loop()
 } 
 
 }
+
+
 void Ultrasonic() //object detection
 {
   
@@ -130,12 +132,14 @@ void medicines() //Despensing system
 {#include<Servo.h>
 Servo motor;
 int p=9;        //digital pin connected
-void setup(){
+void setup()
+{
 motor.attach(9);
 motor.write(180);
 }
-void loop(){
-for(p=0;p<180;p++)
+void loop()
+{
+ for(p=0;p<180;p++)
 {
 motor.write(p);
 delay(10);
@@ -151,8 +155,30 @@ delay(10);
 }
 void irsensor() //despensing gate way
 {
+  void setup() 
+{
+
+  pinMode (IRSensor, INPUT); 
+  pinMode (LED, OUTPUT); 
+}
+
+void loop()
+{
+  int statusSensor = digitalRead (IRSensor);
+  
+  if (statusSensor == 1)
+    digitalWrite(LED, LOW); 
+}
+  
+  else
+  {
+    digitalWrite(LED, HIGH); 
+  }
   
 }
+
+  
+
 void time()
 {#include<Wire.h>
 #include<Time.h>
