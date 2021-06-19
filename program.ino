@@ -33,10 +33,97 @@ void linefollower() //line follower
 }
 void RFID() //Patent Identification
 {
+  #include <SPI.h>
+  #include <MFRC522.h>
+ 
+  #define SS_PIN 10
+  #define RST_PIN 9
+  MFRC522 mfrc522(SS_PIN, RST_PIN);   
+ 
+void setup() 
+{
+  Serial.begin(9600);   
+  SPI.begin();      
+  mfrc522.PCD_Init();  
+  Serial.println("Approximate your card to the reader...");       //doubt
+  Serial.println();
+
+}
+void loop() 
+{
+  // Look for new cards
+  if ( ! mfrc522.PICC_IsNewCardPresent()) 
+  {
+    return;
+  }
+  // Select one of the cards
+  if ( ! mfrc522.PICC_ReadCardSerial()) 
+  {
+    return;
+  }
+  //Show UID on serial monitor
+  Serial.print("UID tag :");
+  String content= "";
+  byte letter;                                                          //??
+  for (byte i = 0; i < mfrc522.uid.size; i++) 
+  {
+     Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
+     Serial.print(mfrc522.uid.uidByte[i], HEX);
+     content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
+     content.concat(String(mfrc522.uid.uidByte[i], HEX));                             //doubt
+  }
+  Serial.println();
+  Serial.print("Message : ");
+  content.toUpperCase();
+  if (content.substring(1) == "BD 31 15 2B")                        //change here the UID of the card that you want to give access to
+  {
+    Serial.println("Authorized access");
+    Serial.println();
+    delay(3000);
+  }
+ 
+ else   {
+    Serial.println(" Access denied");
+    delay(3000);
+  }
+} 
 
 }
 void Ultrasonic() //object detection
 {
+  
+  #define echoPin 2 
+  #define trigPin 3 
+
+
+long duration; 
+int distance; 
+
+void setup()
+{
+  pinMode(trigPin, OUTPUT); 
+  pinMode(echoPin, INPUT); 
+  Serial.begin(9600);
+  Serial.println("Ultrasonic Sensor HC-SR04 Test");             //statement required to be printed?
+  Serial.println("with Arduino UNO R3");
+}
+void loop()
+{
+  digitalWrite(trigPin, LOW);
+  delay(2000);
+  digitalWrite(trigPin, HIGH);
+  delay(10000);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2; 
+
+  Serial.print("Distance: ");
+  Serial.print(distance);  
+  Serial.println(" cm");                                 //will it come in next line
+}
+}
+
+
   
 }
 void medicines() //Despensing system
