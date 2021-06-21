@@ -55,6 +55,9 @@ int buz 12;
 int Rled 13;
 int Gled 14;
 
+//IOT
+SoftwareSerial mySerial(2, 3); // RX, TX
+
 void setup() 
 {
   //Line FOllower  
@@ -276,7 +279,6 @@ void medicines() //Despensing system
       delay(10);
     }
 }
-
   
 }
 void irsensor() //despensing gate way
@@ -319,44 +321,28 @@ void buzzDone()
   delay(1000);
   digitalWrite(buz, LOW);
   
-  
-  
-  
   server.handleClient();                    // EXAMPLE  ONE
 }
 
 void connection()
 {
-  #include <SoftwareSerial.h>
-
-SoftwareSerial mySerial(2, 3); // RX, TX
-
-void setup()
-{
-  
-  Serial.begin(115200);
-  while (!Serial)
-  {
-    ;    // wait for serial port to connect. Needed for Native USB only
-  }
-
-
-  Serial.println("Goodnight moon!");                 //d
-
-  // set the data rate for the SoftwareSerial port
-  mySerial.begin(38400);
-  mySerial.println("Hello, world?");              //
-}
-
-void loop() 
-{
+// SoftwareSerial mySerial(2, 3); // RX, TX
+// void setup()
+// {  
+//   Serial.begin(115200);
+//   while (!Serial)
+//   {
+//     ;    // wait for serial port to connect. Needed for Native USB only
+//   }
+//   Serial.println("Goodnight moon!");                 //d
+//   // set the data rate for the SoftwareSerial port
+//   mySerial.begin(38400);
+//   mySerial.println("Hello, world?");              //
+// }
+// void loop() 
+// {
   if (mySerial.available())
     Serial.write(mySerial.read());                      
   if (Serial.available())
     mySerial.write(Serial.read());
 }
-
-
-  
-}
-
