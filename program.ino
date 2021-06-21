@@ -4,6 +4,21 @@
 #include <DS1307RTC.h>
 #include <SPI.h>
 #include <MFRC522.h>
+#include <ESPS8266WiFi.h>
+#include <SoftwareSerial.h>
+#include <FirebaseArduino.h>
+#include <ArduinoJson.h>
+#include <ESP8266HTTPClient.h>
+
+#define FIREBASE_HOST ""
+#define FIREBASE_AUTH""
+#define WIFI_SSID""
+#define WIFI_PASSWORD""
+String myString;
+char rdata;
+int adata = 0;
+
+int irstVal;
 
 //IR sensor
 //int IRL = A0;
