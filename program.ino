@@ -88,6 +88,37 @@ void setup()
   digitalWrite(Gled, OUTPUT);
   //
   
+  pinMode(LED_BUILTIN, OUTPUT);                            // EXAMPLE ONE
+ delay(3000);
+ Serial.begin(115200);
+ Serial.println();
+ Serial.print("Configuring access point...");
+ WiFi.begin(ssid, password);
+ while (WiFi.status() != WL_CONNECTED) {
+   delay(500);
+   Serial.print(".");
+ }
+ Serial.println("");
+ Serial.println("WiFi connected");
+ Serial.println("IP address: ");
+ Serial.println(WiFi.localIP());
+ server.on ( "/", handleRoot );
+ server.on ("/save", handleSave);
+ server.begin();
+ Serial.println ( "HTTP server started" );
+ server.on("/LED_BUILTIN_on", []() {
+   digitalWrite(LED_BUILTIN, 1);
+   Serial.println("on");
+   handleRoot();
+ });
+ server.on("/LED_BUILTIN_off", []() {
+   digitalWrite(LED_BUILTIN, 0);
+   Serial.println("off");
+   handleRoot();
+ });
+}
+void loop() {
+ server.handleClient();
 }
 
 void loop() 
@@ -272,4 +303,9 @@ void buzzDone()
   digitalWrite(buz, HIGH);
   delay(1000);
   digitalWrite(buz, LOW);
+  
+  
+  
+  
+  server.handleClient();                    // EXAMPLE  ONE
 }
