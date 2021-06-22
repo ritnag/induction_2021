@@ -269,7 +269,7 @@ void Stop()
 
 
 
-//==============================================================   RFID ANTENNA   ==========================================================================================================
+//=======================================================================   RFID ANTENNA   ============================================================================
 
 
 void RFID() //Patent Identification
@@ -378,49 +378,50 @@ void irsensor() //despensing gate way
 
 //======================================================================  RTC   ==================================================================================================
 
-  void time()
+void time()
 {
   DateTime now = rtc.now();
+  int date_time[5]={now.day(), now.month(), now.year(), now.hour(), now.minute()};
+  Serial.print(date_time)
+//  Serial.print(now.year(), DEC);
+//  Serial.print('/');
+//  Serial.print(now.month(), DEC);
+//  Serial.print('/');
+//  Serial.print(now.day(), DEC);
+//  Serial.print(" (");
+//  Serial.print(daysOfTheWeek[now.dayOfTheWeek()]); // if required to print the day of the week
+//  Serial.print(") ");
+//  Serial.print(now.hour(), DEC);
+//  Serial.print(':');
+//  Serial.print(now.minute(), DEC);
+//  Serial.print(':');
+//  Serial.print(now.second(), DEC);
+//  Serial.println();
 
-  Serial.print(now.year(), DEC);
-  Serial.print('/');
-  Serial.print(now.month(), DEC);
-  Serial.print('/');
-  Serial.print(now.day(), DEC);
-  Serial.print(" (");
-  Serial.print(daysOfTheWeek[now.dayOfTheWeek()]);
-  Serial.print(") ");
-  Serial.print(now.hour(), DEC);
-  Serial.print(':');
-  Serial.print(now.minute(), DEC);
-  Serial.print(':');
-  Serial.print(now.second(), DEC);
-  Serial.println();
-
-  Serial.print(" since midnight 1/1/1970 = ");
-  Serial.print(now.unixtime());
-  Serial.print("s = ");
-  Serial.print(now.unixtime() / 86400L);
-  Serial.println("d");
+//  Serial.print(" since midnight 1/1/1970 = ");
+//  Serial.print(now.unixtime());
+//  Serial.print("s = ");
+//  Serial.print(now.unixtime() / 86400L);
+//  Serial.println("d");
 
   // calculate a date which is 7 days and 30 seconds into the future
-  DateTime future (now + TimeSpan(7, 12, 30, 6));
+//  DateTime future (now + TimeSpan(7, 12, 30, 6));
+//
+//  Serial.print(" now + 7d + 30s: ");
+//  Serial.print(future.year(), DEC);
+//  Serial.print('/');
+//  Serial.print(future.month(), DEC);
+//  Serial.print('/');
+//  Serial.print(future.day(), DEC);
+//  Serial.print(' ');
+//  Serial.print(future.hour(), DEC);
+//  Serial.print(':');
+//  Serial.print(future.minute(), DEC);
+//  Serial.print(':');
+//  Serial.print(future.second(), DEC);
+//  Serial.println();
 
-  Serial.print(" now + 7d + 30s: ");
-  Serial.print(future.year(), DEC);
-  Serial.print('/');
-  Serial.print(future.month(), DEC);
-  Serial.print('/');
-  Serial.print(future.day(), DEC);
-  Serial.print(' ');
-  Serial.print(future.hour(), DEC);
-  Serial.print(':');
-  Serial.print(future.minute(), DEC);
-  Serial.print(':');
-  Serial.print(future.second(), DEC);
-  Serial.println();
-
-  Serial.println();
+//  Serial.println();
   delay(3000);
 }
 
@@ -438,6 +439,8 @@ void buzzReady()
   delay(2000);
   digitalWrite(buz, LOW);  
 }
+
+
 void buzzDone()
 {
   digitalWrite(buz, HIGH);
@@ -448,7 +451,7 @@ void buzzDone()
   delay(1000);
   digitalWrite(buz, LOW);
   
-  server.handleClient();                    // EXAMPLE  ONE
+//  server.handleClient();                    // EXAMPLE  ONE
 }
 
  
