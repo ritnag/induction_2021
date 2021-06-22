@@ -1,12 +1,48 @@
 //===================================================================================  Declaring   ==================================================================================
 
+#include <servo.h>
+#include <Wire.h>
+#include <Time.h>
+#include <DS1307RTC.h>
+#include <SPI.h>
+#include <MFRC522.h>
+#include <SoftwareSerial.h>
+#include <FirebaseArduino.h>
+#include <ArduinoJson.h>
+#include <ESP8266HTTPClient.h>
+#include "RTClib.h"
+
+
+
 
 //servo
+
 //ir
+int IRH = 2;
+int IRO = 3;
+
 //RTC
+RTC_DS1307 rtc;
+char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
 //Buzzer
+int buz 6;
+
 //line follower
+#define in1 9
+#define in2 8
+#define in3 7
+#define in4 6
+#define enA 10
+#define enB 5
+int M1_Speed = 100; // speed of motor 
+int M2_Speed = 100; // speed of motor 2
+int LeftRotationSpeed = 250;  // Left Rotation Speed
+int RightRotationSpeed = 250; // Right Rotation Speed
+
 //LED
+int Rled 8;
+int Gled 7;
 
 
 
