@@ -382,7 +382,7 @@ void time()
 {
   DateTime now = rtc.now();
   int date_time[5]={now.day(), now.month(), now.year(), now.hour(), now.minute()};
-  Serial.print(date_time)
+  Serial.print(date_time);
 //  Serial.print(now.year(), DEC);
 //  Serial.print('/');
 //  Serial.print(now.month(), DEC);
