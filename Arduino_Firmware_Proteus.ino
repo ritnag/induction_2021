@@ -7,9 +7,6 @@
 #include <SPI.h>
 #include <MFRC522.h>
 #include <SoftwareSerial.h>
-#include <FirebaseArduino.h>
-#include <ArduinoJson.h>
-#include <ESP8266HTTPClient.h>
 #include "RTClib.h"
 
 
@@ -17,9 +14,10 @@
 
 //servo
 
+
 //ir
-int IRH = 2;
-int IRO = 3;
+int IRH = 10;
+int IRO = 11;
 
 //RTC
 RTC_DS1307 rtc;
@@ -29,12 +27,12 @@ char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursd
 int buz 6;
 
 //line follower
-#define in1 9
-#define in2 8
-#define in3 7
-#define in4 6
-#define enA 10
-#define enB 5
+#define in1 25
+#define in2 24
+#define in3 23
+#define in4 22
+#define enA 30
+#define enB 31
 int M1_Speed = 100; // speed of motor 
 int M2_Speed = 100; // speed of motor 2
 int LeftRotationSpeed = 250;  // Left Rotation Speed
@@ -43,16 +41,6 @@ int RightRotationSpeed = 250; // Right Rotation Speed
 //LED
 int Rled 8;
 int Gled 7;
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -269,7 +257,7 @@ void green_led()
 }
 
 
-/=====================================================================================IR Sensor  ================================================================================
+//==================================================================================  IR Sensor  ================================================================================
 
 void irsensor() //despensing gate way
 {
