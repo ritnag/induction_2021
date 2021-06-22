@@ -42,23 +42,62 @@ int RightRotationSpeed = 250; // Right Rotation Speed
 int Rled 8;
 int Gled 7;
 
+//miscellaneous
+
+int rand;
+
 
 
 //===================================================================================  Void Setup  ==============================================================================
 
 
+void setup() 
+{
+  //Line FOllower  
+  pinMode(in1,OUTPUT);
+  pinMode(in2,OUTPUT);
+  pinMode(in3,OUTPUT);
+  pinMode(in4,OUTPUT);
+  pinMode(enA,OUTPUT);
+  pinMode(enB,OUTPUT);
+  pinMode(A0, INPUT); // initialize Left sensor as an input
+  pinMode(A1, INPUT); // initialize Right sensor as an input
+
+   //RTC
+  //  while (!Serial); // for Leonardo/Micro/Zero
+  Serial.begin(9600);
+  if (! rtc.begin())
+  {
+    Serial.println("Couldn't find RTC");
+    while (1);
+  }
+
+  if (! rtc.isrunning())
+  {
+    Serial.println("RTC is NOT running!");
+    // following line sets the RTC to the date & time this sketch was compiled
+//     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+    rtc.adjust(DateTime(2021, 6, 22, 10, 24, 15));
+    // This line sets the RTC with an explicit date & time, for example to set
+    // January 21, 2014 at 3am you would call:
+    // rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0));
+  } 
 
 
 
+  //IR Sensor
+  pinMode (IRH, INPUT); // sensor pin INPUT for hand detection
+  pinMode (IRO, INPUT); // sensor pin INPUT for object detection 
+
+  //Servo Motors
+
+  //Buzzer
+  digitalWrite(buz, OUTPUT);
 
 
-
-
-
-
-
-
-
+  //LED
+  digitalWrite(Rled, OUTPUT);
+  digitalWrite(Gled, OUTPUT);
 
 
 //===================================================================================  Void Loop  ===============================================================================
@@ -159,30 +198,35 @@ void Stop()
 
 void despensing() //Despensing system
 {
-  Servo motor;
-  int p=9;        //digital pin connected
-  void setup()
-  {
-    motor.attach(9);
-    motor.write(180);
-  }
+//   Servo motor;
+//   int p=9;        //digital pin connected
+//   void setup()
+//   {
+//     motor.attach(9);
+//     motor.write(180);
+//   }
   
-    int statusSensor = digitalRead(IRSensor); // reads the IR sensor input
+//     int statusSensor = digitalRead(IRSensor); // reads the IR sensor input
   
-  if (statusSensor == 0)
-     despensing();
+//   if (statusSensor == 0)
+//      despensing();
   
-  void loop(){
-    for(p=0;p<180;p++)
-    {
-      motor.write(p);
-      delay(10);
-    }
-    for(p=180;p>=1;p--)
-    {
-      motor.write(p);
-      delay(10);
-    }
+//   void loop(){
+//     for(p=0;p<180;p++)
+//     {
+//       motor.write(p);
+//       delay(10);
+//     }
+//     for(p=180;p>=1;p--)
+//     {
+//       motor.write(p);
+//       delay(10);
+//     }
+
+  rand = random(
+
+
+
 }
 
 void motor1()
