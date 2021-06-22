@@ -329,6 +329,12 @@ void despensing() //Despensing system
     motor.attach(9);
     motor.write(180);
   }
+  
+    int statusSensor = digitalRead(IRSensor); // reads the IR sensor input
+  
+  if (statusSensor == 0)
+     despensing();
+  
   void loop(){
     for(p=0;p<180;p++)
     {
